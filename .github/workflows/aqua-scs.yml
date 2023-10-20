@@ -28,6 +28,8 @@ jobs:
           CSPM_URL: https://stage.api.cloudsploit.com
           TRIVY_RUN_AS_PLUGIN: 'aqua'
           # For http/https proxy configuration add env vars: HTTP_PROXY/HTTPS_PROXY, CA-CRET (path to CA certificate)
+      - name: Build Docker Image
+        run: docker build -t "$GITHUB_REPOSITORY:$GITHUB_RUN_NUMBER" .
       - name: Manifest Generation
         run: |
           export BILLY_SERVER=https://billy.dev-aqua.codesec.aquasec.com
