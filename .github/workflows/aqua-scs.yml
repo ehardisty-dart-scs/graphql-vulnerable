@@ -47,6 +47,14 @@ jobs:
             --artifact-path "my-image-name:${{ env.tag-version }}" 
 
             # The docker image name:tag of the newly built image
-            # --artifact-path "my-image-name:${{ env.tag-version }}" 
-            # OR the path to the root folder of your project. I.e my-repo/my-app 
-            # --artifact-path "${{env.MY_APP_ROOT}}"
+      - name: Setup pipeline enforcer
+        uses: aquasecurity/pipeline-enforcer-action@main
+        env:
+          CSPM_URL: https://stage.api.cloudsploit.com
+          AQUA_URL: https://api.dev.supply-chain.cloud.aquasec.com
+        with:
+          aqua-key: ${{ secrets.AQUA_KEY }}
+          aqua-secret: ${{ secrets.AQUA_SECRET }}
+                  # --artifact-path "my-image-name:${{ env.tag-version }}" 
+                    # OR the path to the root folder of your project. I.e my-repo/my-app 
+                    # --artifact-path "${{env.MY_APP_ROOT}}"
